@@ -7,121 +7,157 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-    /* Base styles */
+    /* Konecta Brand Theme:
+      - Konecta Blue: #0f0f72
+      - Konecta Dark: #2900c9
+      - Konecta Yellow: #f0fa00
+    */
     :root {
-        --konecta-blue: #00a9e0;
+        --konecta-blue: #0f0f72;
         --konecta-dark: #2900c9;
+        --konecta-yellow: #f0fa00;
     }
     html, body {
             height: 100%;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #F9FAFB; /* text-gray-50 */
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #111827; /* bg-gray-900 */
+        color: #F9FAFB; /* text-gray-50 */
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
 
-        /* Slide container */
-        #presentation-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            flex-grow: 1;
-            overflow: hidden;
-        }
+    /* Slide container */
+    #presentation-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        flex-grow: 1;
+        overflow: hidden;
+    }
 
-        /* Individual slide styles */
-        .slide {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.6s ease-in-out;
-            pointer-events: none;
-            z-index: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 4rem; /* 64px */
-        }
+    /* Individual slide styles */
+    .slide {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+        pointer-events: none;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 5rem; /* 64px 80px */
+    }
 
-        .slide.active {
-            opacity: 1;
-            pointer-events: auto;
-            z-index: 10;
-        }
+    .slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 10;
+    }
 
-        /* Reusable slide title */
+    /* Reusable slide title */
     .slide-title {
-        font-size: 2.25rem; /* text-4xl */
-        font-weight: 700; /* font-bold */
-        color: var(--konecta-blue); /* text-blue-400 */
+        font-size: 2.5rem; /* text-4xl */
+        font-weight: 800; /* font-extrabold */
+        color: var(--konecta-blue);
         margin-bottom: 2.5rem; /* mb-10 */
-            padding-bottom: 0.5rem; /* pb-2 */
-            border-bottom: 2px solid #374151; /* border-gray-700 */
-        }
+        padding-bottom: 0.75rem; /* pb-3 */
+        border-bottom: 2px solid #374151; /* border-gray-700 */
+    }
+    
+    .slide-title-accent {
+        color: var(--konecta-yellow);
+    }
 
-        /* Custom bullet points */
+    /* Custom bullet points */
     ul li::marker {
-        color: var(--konecta-blue); /* text-blue-400 */
+        color: var(--konecta-blue);
+        font-size: 1.2em;
+    }
+    ul li {
+        padding-left: 0.5rem; /* pl-2 */
     }
 
     /* Reusable benefit card */
-        .benefit-card {
-            background-color: #1F2937; /* bg-gray-800 */
-            padding: 1.5rem; /* p-6 */
-            border-radius: 0.75rem; /* rounded-xl */
-            border: 1px solid #374151; /* border-gray-700 */
-            display: flex;
-            flex-direction: column;
-        }
-        .benefit-card h3 {
-        font-size: 1.25rem; /* text-xl */
-        font-weight: 600; /* font-semibold */
-        color: var(--konecta-blue); /* text-blue-300 */
+    .benefit-card {
+        background-color: #1F2937; /* bg-gray-800 */
+        padding: 1.5rem; /* p-6 */
+        border-radius: 0.75rem; /* rounded-xl */
+        border-top: 4px solid var(--konecta-blue);
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,169,224,0.1);
+    }
+    .benefit-card h3 {
+        font-size: 1.3rem; /* text-xl */
+        font-weight: 700; /* font-bold */
+        color: white; 
         margin-bottom: 0.75rem; /* mb-3 */
     }
-        .benefit-card p {
-            font-size: 1rem; /* text-base */
-            color: #D1D5DB; /* text-gray-300 */
-            line-height: 1.6;
-        }
+    .benefit-card h3 span { /* Accent */
+        color: var(--konecta-yellow);
+    }
+    .benefit-card p {
+        font-size: 1rem; /* text-base */
+        color: #D1D5DB; /* text-gray-300 */
+        line-height: 1.6;
+    }
 
-        /* Navigation controls */
+    /* Navigation controls */
     #nav-controls {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: rgba(17, 24, 39, 0.8); /* bg-gray-900 with opacity */
-            backdrop-filter: blur(8px);
-            z-index: 20;
-            border-top: 1px solid #374151; /* border-gray-700 */
-        }
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: rgba(17, 24, 39, 0.8); /* bg-gray-900 with opacity */
+        backdrop-filter: blur(8px);
+        z-index: 20;
+        border-top: 1px solid #374151; /* border-gray-700 */
+    }
     .nav-button {
-        background-color: var(--konecta-dark); /* bg-blue-600 */
+        background-color: var(--konecta-dark);
         color: white;
         font-weight: 600; /* font-semibold */
-            padding: 0.5rem 1.25rem; /* py-2 px-5 */
-            border-radius: 0.5rem; /* rounded-lg */
-        transition: background-color 0.2s;
+        padding: 0.75rem 1.5rem; /* py-3 px-6 */
+        border-radius: 0.5rem; /* rounded-lg */
+        transition: background-color 0.2s, transform 0.2s;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
     .nav-button:hover {
-        background-color: var(--konecta-blue); /* bg-blue-700 */
+        background-color: var(--konecta-blue);
+        transform: translateY(-2px);
     }
     .nav-button:disabled {
-            background-color: #374151; /* bg-gray-700 */
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-    </style>
+        background-color: #374151; /* bg-gray-700 */
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    /* Title slide logo */
+    .konecta-logo {
+        width: 250px;
+        height: auto;
+        background-color: var(--konecta-dark);
+        padding: 20px 30px;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+</style>
 </head>
 <body class="relative">
 
@@ -129,59 +165,59 @@
 
         <!-- Slide 1: Title Slide -->
         <section class="slide active flex flex-col justify-center items-center text-center p-12" data-slide-index="1">
-            <span class="text-2xl font-light text-[var(--konecta-blue)]">Business Case & Proposal</span>
-            <h1 class="text-6xl font-bold mt-4 text-white">KOMPASS</h1>
-            <p class="text-3xl font-light text-gray-200 mt-2">(Konecta Operations, Management & Personnel Self-Service)</p>
-            <p class="text-2xl text-gray-400 mt-16">Prepared by: <strong class="text-white">Fady Bekhet</strong></p>
+            <img src="https://konecta.com/images/konecta-share.jpg" alt="Konecta Logo" class="konecta-logo" />
+            <h1 class="text-7xl font-extrabold mt-4 text-white">KOMPASS</h1>
+            <p class="text-3xl font-light text-gray-200 mt-2 tracking-wide">(Konecta Operations, Management & Personnel Self-Service)</p>
+            <p class="text-2xl text-gray-400 mt-24">Prepared by: <strong class="text-white">Fady Bekhet</strong></p>
         </section>
 
         <!-- Slide 2: Executive Summary -->
         <section class="slide p-12 md:p-20" data-slide-index="2">
             <h2 class="slide-title">1. Executive Summary</h2>
             <div class="space-y-8 text-xl text-gray-200">
-                <p><strong class="text-[var(--konecta-blue)] text-2xl block mb-2">The Problem:</strong> Manual, error-prone processes for tracking adherence, leave, and schedules are costing time and money, while providing zero real-time visibility.</p>
-                <p><strong class="text-[var(--konecta-blue)] text-2xl block mb-2">The Solution:</strong> KOMPASS, a secure Google Workspace tool, centralizes and automates these tasks, providing a live dashboard for managers and self-service for agents.</p>
-                <p><strong class="text-[var(--konecta-blue)] text-2xl block mb-2">The Benefit (ROI):</strong> Immediately saves hundreds of admin hours, drastically improves data accuracy for payroll, and empowers managers to lead proactively.</p>
+                <p><strong class="text-[var(--konecta-blue)] text-2xl block mb-2">The Problem:</strong> Outdated, error-prone manual processes are draining resources, eroding our bottom line, and providing zero real-time operational visibility.</p>
+                <p><strong class="text-[var(--konecta-blue)] text-2xl block mb-2">The Solution:</strong> KOMPASS, a proprietary Google Workspace tool, digitizes and revolutionizes these workflows, providing a live command dashboard for managers and total self-service for agents.</p>
+                <p><strong class="text-[var(--konecta-yellow)] text-2xl block mb-2">The Benefit (ROI):</strong> KOMPASS will reclaim <span class="font-bold">thousands of administrative hours</span>, deliver <span class="font-bold">100% data integrity</span> for payroll, and transform managers from reactive reporters to proactive leaders.</p>
             </div>
         </section>
 
         <!-- Slide 3: The Problem -->
         <section class="slide p-12 md:p-20" data-slide-index="3">
-            <h2 class="slide-title">2. The Problem: Current Inefficiencies</h2>
+            <h2 class="slide-title">2. The Problem: <span class="slide-title-accent">Our Operational Bottlenecks</span></h2>
             <ul class="text-xl space-y-5 list-disc list-outside ml-6 text-gray-200">
-                <li><strong class="text-white">Manual Adherence Tracking:</strong> Supervisors spend hours manually compiling reports—a reactive, not proactive, process.</li>
-                <li><strong class="text-white">Lack of Real-Time Visibility:</strong> No way to see who is on break, late, or in coaching *right now*.</li>
-                <li><strong class="text-white">Data & Payroll Errors:</strong> Manual data entry leads to frequent mistakes, payroll discrepancies, and wasted time on corrections.</li>
-                <li><strong class="text-white">Inefficient Leave Management:</strong> Disconnected emails and spreadsheets make tracking balances and approvals a nightmare.</li>
-                <li><strong class="text-white">Poor Employee Experience:</strong> Agents have no self-service for schedules, leave, or performance, creating constant dependency on managers.</li>
+                <li><strong class="text-white">The Daily Grind:</strong> Manual adherence reports are labor-intensive and obsolete by the time they're finished.</li>
+                <li><strong class="text-white">The 'Black Box' Problem:</strong> Managers are blind to real-time team status (breaks, lates, coaching).</li>
+                <li><strong class="text-white">The High Cost of 'Oops':</strong> Manual entry errors directly impact payroll, adherence metrics, and employee morale.</li>
+                <li><strong class="text-white">The Approval Logjam:</strong> Leave and schedule changes are lost in email chains, lacking tracking and accountability.</li>
+                <li><strong class="text-white">The Disempowered Agent:</strong> Agents are 100% dependent on managers for basic info (schedules, balances, history).</li>
             </ul>
         </section>
 
         <!-- Slide 4: The Solution -->
         <section class="slide p-12 md:p-20" data-slide-index="4">
-            <h2 class="slide-title">3. The Solution: The KOMPASS Platform</h2>
-            <p class="text-xl text-gray-200 mb-10">KOMPASS replaces fragmented, manual workflows with a single, secure, and automated "source of truth" built on our existing Google environment.</p>
+            <h2 class="slide-title">3. The Solution: <span class="slide-title-accent">The KOMPASS Platform</span></h2>
+            <p class="text-xl text-gray-200 mb-10">KOMPASS replaces fragmented, manual workflows with a single, secure, and automated "source of truth."</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-gray-800 p-8 rounded-lg border border-red-500 shadow-lg">
-                    <h3 class="text-2xl font-bold text-red-400 mb-4 text-center">BEFORE KOMPASS</h3>
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-red-500 shadow-lg">
+                    <h3 class="text-2xl font-bold text-red-400 mb-4 text-center">THE OLD WAY (REACTIVE)</h3>
                     <ul class="text-lg space-y-3 list-disc list-outside ml-6 text-red-200">
-                        <li>Manual spreadsheets</li>
-                        <li>Email chains for leave</li>
-                        <li>No live data</li>
-                        <li>Adherence reports are 24h late</li>
-                        <li>Constant data errors</li>
-                        <li>Agent dependency on manager</li>
+                        <li>Manual spreadsheets & data entry</li>
+                        <li>Email chains for approvals</li>
+                        <li>No live data (24h+ delay)</li>
+                        <li>Constant data errors & disputes</li>
+                        <li>Payroll corrections</li>
+                        <li>Reactive management</li>
                     </ul>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg border border-green-500 shadow-lg">
-                    <h3 class="text-2xl font-bold text-green-400 mb-4 text-center">AFTER KOMPASS</h3>
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-green-500 shadow-lg">
+                    <h3 class="text-2xl font-bold text-green-400 mb-4 text-center">THE KOMPASS WAY (PROACTIVE)</h3>
                     <ul class="text-lg space-y-3 list-disc list-outside ml-6 text-green-200">
-                        <li>Centralized database</li>
+                        <li>Centralized, secure database</li>
                         <li>Automated approval workflows</li>
                         <li>Live, auto-refreshing dashboard</li>
-                        <li>Real-time adherence alerts</li>
-                        <li>Guaranteed data integrity</li>
-                        <li>Full agent self-service</li>
+                        <li>100% data integrity, zero errors</li>
+                        <li>Payroll accuracy</li>
+                        <li>Proactive, real-time leadership</li>
                     </ul>
                 </div>
             </div>
@@ -189,106 +225,106 @@
 
         <!-- Slide 5: Features Overview -->
         <section class="slide p-12 md:p-20" data-slide-index="5">
-            <h2 class="slide-title">4. Core Features: A 360° Solution</h2>
-            <p class="text-xl text-gray-200 mb-10">KOMPASS provides distinct, permission-based features for every role in the company.</p>
+            <h2 class="slide-title">4. Core Features: <span class="slide-title-accent">A 360° Solution</span></h2>
+            <p class="text-xl text-gray-200 mb-10">KOMPASS delivers a tailored, permission-based experience for every role in our operation.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="bg-gray-800 p-8 rounded-lg border border-[var(--konecta-dark)] shadow-xl">
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-dark)] shadow-xl">
                     <h3 class="text-2xl font-bold text-white mb-4">FOR AGENTS</h3>
-                    <p class="text-lg text-gray-300">Self-service tools that empower employees and reduce supervisor dependency.</p>
+                    <p class="text-lg text-gray-300">A powerful self-service portal that empowers employees and reduces supervisor dependency.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg border border-[var(--konecta-dark)] shadow-xl">
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-dark)] shadow-xl">
                     <h3 class="text-2xl font-bold text-white mb-4">FOR MANAGERS</h3>
-                    <p class="text-lg text-gray-300">Real-time dashboards and admin tools to manage teams proactively.</p>
+                    <p class="text-lg text-gray-300">A real-time command center and robust admin tools to manage teams proactively.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg border border-[var(--konecta-dark)] shadow-xl">
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-dark)] shadow-xl">
                     <h3 class="text-2xl font-bold text-white mb-4">FOR SUPERADMINS</h3>
-                    <p class="text-lg text-gray-300">System-wide configuration and high-level user management.</p>
+                    <p class="text-lg text-gray-300">Total system-wide configuration, user onboarding, and content management.</p>
                 </div>
             </div>
         </section>
 
         <!-- Slide 6: Agent Features -->
         <section class="slide p-12 md:p-20" data-slide-index="6">
-            <h2 class="slide-title">Features for All Users (Agents)</h2>
+            <h2 class="slide-title">Features for <span class="slide-title-accent">All Users (Agents)</span></h2>
             <ul class="text-xl space-y-4 list-disc list-outside ml-6 text-gray-200">
-                <li><strong>Punch Clock:</strong> Simple interface for Login, Logout, Breaks, and Lunch.</li>
-                <li><strong>Auxiliary Codes:</strong> Track non-adherence time (Coaching, Meeting, Personal).</li>
-                <li><strong>My Schedule:</strong> View upcoming 7-day schedule.</li>
-                <li><strong>My Leave Module:</strong> View real-time balances and submit new leave requests.</li>
-                <li><strong>Coaching History:</strong> Review all past coaching sessions and digitally acknowledge them.</li>
-                <li><strong>Live Announcements:</strong> See real-time broadcasts from admins on the main page.</li>
+                <li><strong>One-Click Punch Clock:</strong> Simple, intuitive interface for Login, Logout, Breaks, and Lunch.</li>
+                <li><strong>Auxiliary Code Tracking:</strong> Accurately log non-adherence time (Coaching, Meeting, Personal).</li>
+                <li><strong>My Schedule Portal:</strong> View their official, upcoming 7-day schedule 24/7.</li>
+                <li><strong>My Leave Module:</strong> View real-time balances and submit new leave requests in seconds.</li>
+                <li><strong>Coaching Hub:</strong> Review all past coaching sessions and digitally **acknowledge** them.</li>
+                <li><strong>Live Announcement Banner:</strong> See real-time broadcasts from admins on the main page.</li>
             </ul>
         </section>
 
         <!-- Slide 7: Manager Features -->
         <section class="slide p-12 md:p-20" data-slide-index="7">
-            <h2 class="slide-title">Features for Managers (Admins)</h2>
+            <h2 class="slide-title">Features for <span class="slide-title-accent">Managers (Admins)</span></h2>
             <ul class="text-xl space-y-4 list-disc list-outside ml-6 text-gray-200">
-                <li><strong>Live Team Dashboard:</strong> Auto-refreshing panel of all team members' current statuses.</li>
+                <li><strong>Live Team Dashboard:</strong> Auto-refreshing "Mission Control" panel of all team members' current statuses.</li>
                 <li><strong>Hierarchy Management:</strong> View and manage team structures; approve agent-to-team movements.</li>
-                <li><strong>Leave Approvals:</strong> A dedicated queue to approve or deny subordinate leave requests.</li>
-                <li><strong>Schedule Editor:</strong> Manually edit schedules or bulk-upload via CSV.</li>
+                <li><strong>Leave Approval Queue:</strong> A dedicated queue to approve or deny subordinate leave requests.</li>
+                <li><strong>Advanced Schedule Editor:</strong> Manually edit schedules or bulk-upload via CSV.</li>
                 <li><strong>Reporting & Admin Tools:</strong> Generate CSV history reports, adjust balances, and submit leave on behalf of agents.</li>
-                <li><strong>Team Coaching:</strong> Submit and track coaching sessions for all subordinates.</li>
+                <li><strong>Team Coaching Module:</strong> Submit and track coaching sessions for all subordinates.</li>
             </ul>
         </section>
 
         <!-- Slide 8: Superadmin Features -->
         <section class="slide p-12 md:p-20" data-slide-index="8">
-            <h2 class="slide-title">Features for System Admins (Superadmins)</h2>
+            <h2 class="slide-title">Features for <span class="slide-title-accent">System Admins (Superadmins)</span></h2>
             <ul class="text-xl space-y-4 list-disc list-outside ml-6 text-gray-200">
-                <li><strong>User Registration Admin:</strong> Approval queue to activate new users and assign them to a supervisor.</li>
-                <li class="mt-4"><strong>Coaching Admin:</strong> Full CRUD interface to build and manage the dynamic coaching templates used by all managers.</li>
-                <li class="mt-4"><strong>Announcements Admin:</strong> Full CRUD interface to create, edit, and broadcast live announcements to all users.</li>
+                <li><strong>User Registration Gateway:</strong> Secure approval queue to activate new users and assign them to a supervisor.</li>
+                <li class="mt-4"><strong>Dynamic Coaching Admin:</strong> Full CRUD interface to build and manage the dynamic coaching templates used by all managers.</li>
+                <li class="mt-4"><strong>Broadcast Admin:</strong> Full CRUD interface to create, edit, and broadcast live announcements to all users.</li>
             </ul>
         </section>
 
         <!-- Slide 9: Key Business Benefits -->
         <section class="slide p-12 md:p-20" data-slide-index="9">
-            <h2 class="slide-title">5. Key Business Benefits (ROI)</h2>
+            <h2 class="slide-title">5. Key Business Benefits <span class="slide-title-accent">(The "Why")</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="benefit-card">
-                    <h3>Massive Time Savings</h3>
-                    <p>Automates adherence, leave, and reporting, freeing supervisors for value-add tasks like coaching.</p>
+                    <h3><span>Reclaim</span> Thousands of Hours</h3>
+                    <p>Automates adherence, leave, and reporting, freeing supervisors for high-value tasks like coaching.</p>
                 </div>
                 <div class="benefit-card">
-                    <h3>Data Integrity & Accuracy</h3>
-                    <p>Eliminates manual entry errors, providing a single source of truth for adherence and payroll.</p>
+                    <h3><span>Trust</span> Your Data</h3>
+                    <p>Eliminates manual entry errors, providing a single source of truth for adherence and payroll accuracy.</p>
                 </div>
                 <div class="benefit-card">
-                    <h3>Proactive Management</h3>
+                    <h3>Manage in <span>Real-Time</span></h3>
                     <p>Live, auto-refreshing dashboard allows managers to see and address issues *as they happen*, not 24 hours later.</p>
                 </div>
                 <div class="benefit-card">
-                    <h3>Employee Empowerment</h3>
-                    <p>Self-service for leave, schedules, and coaching reduces supervisor dependency and improves transparency.</p>
+                    <h3><span>Empower</span> Your People</h3>
+                    <p>Self-service for leave, schedules, and coaching reduces supervisor dependency and improves agent morale.</p>
                 </div>
                 <div class="benefit-card">
-                    <h3>Standardized Processes</h3>
+                    <h3><span>Enforce</span> Excellence</h3>
                     <p>Enforces a single, compliant workflow for all requests, changes, and coaching documentation.</p>
                 </div>
                 <div class="benefit-card">
-                    <h3>Secure & Scalable</h3>
-                    <p>Built on our Google Workspace. No new logins, no extra infrastructure costs. Infinitely scalable.</p>
+                    <h3><span>Zero-Cost</span> Infrastructure</h3>
+                    <p>Built on our existing Google Workspace. No new logins, no server costs. Infinitely scalable.</p>
                 </div>
             </div>
         </section>
 
         <!-- Slide 10: The Proposal -->
         <section class="slide p-12 md:p-20" data-slide-index="10">
-            <h2 class="slide-title">6. Proposal & Next Steps</h2>
+            <h2 class="slide-title">6. Proposal & <span class="slide-title-accent">Next Steps</span></h2>
             <p class="text-xl text-gray-200 mb-8">This tool is a valuable, proprietary asset that directly improves our operational efficiency and bottom line.</p>
             <ul class="text-2xl space-y-6 text-gray-100">
-                <li class="p-6 bg-gray-800 rounded-lg border border-gray-700 shadow-lg">
-                    <strong class="text-[var(--konecta-blue)] block mb-2">1. Formal Adoption:</strong>
+                <li class="p-6 bg-gray-800 rounded-lg border-2 border-[var(--konecta-dark)] shadow-lg">
+                    <strong class="text-[var(--konecta-blue)] block mb-2">1. Adopt & Standardize:</strong>
                     Officially adopt KOMPASS as the standard operations portal for all targeted departments.
                 </li>
-                <li class="p-6 bg-gray-800 rounded-lg border border-gray-700 shadow-lg">
-                    <strong class="text-[var(--konecta-blue)] block mb-2">2. Recognition & Compensation:</strong>
+                <li class="p-6 bg-gray-800 rounded-lg border-2 border-[var(--konecta-yellow)] shadow-lg">
+                    <strong class="text-[var(--konecta-yellow)] block mb-2">2. Invest in Our Asset:</strong>
                     Acknowledge the development work and agree on fair compensation and an SLA for ongoing support.
                 </li>
-                <li class="p-6 bg-gray-800 rounded-lg border border-gray-700 shadow-lg">
-                    <strong class="text-[var(--konecta-blue)] block mb-2">3. Integration Roadmap (Phase 2):</strong>
+                <li class="p-6 bg-gray-800 rounded-lg border-2 border-gray-700 shadow-lg">
+                    <strong class="text-[var(--konecta-blue)] block mb-2">3. Future-Proof (Phase 2):</strong>
                     Plan for future integration with official HRIS (e.g., Workday) and Payroll systems.
                 </li>
             </ul>
@@ -296,7 +332,7 @@
 
         <!-- Slide 11: Thank You -->
         <section class="slide flex flex-col justify-center items-center text-center p-12" data-slide-index="11">
-            <h1 class="text-6xl font-bold text-white">Thank You</h1>
+            <h1 class="text-7xl font-bold text-white">Thank You</h1>
             <p class="text-4xl font-light text-gray-200 mt-8">Questions & Discussion</p>
         </section>
 
@@ -359,9 +395,9 @@
 
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') {
+                if (e.key === 'ArrowRight' && currentSlide < totalSlides) {
                     nextSlide();
-                } else if (e.key === 'ArrowLeft') {
+                } else if (e.key === 'ArrowLeft' && currentSlide > 1) {
                     prevSlide();
                 }
             });
