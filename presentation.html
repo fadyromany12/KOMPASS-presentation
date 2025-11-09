@@ -10,22 +10,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
     /* Konecta Brand Theme:
-      - Konecta Blue: #2900c9
-      - Konecta Dark: #2900c9
+      - Konecta Blue: #00a9e0 (This will no longer be used)
+      - Konecta Dark: #2a01cd (User specified: #2a01cd)
       - Konecta Yellow: #f0fa00
+      - Konecta Yellow Light: rgba(240, 250, 0, 0.7)
     */
     :root {
-        --konecta-blue: #2900c9;
-        --konecta-dark: #2900c9;
+        --konecta-blue: #00a9e0; /* This will no longer be used */
+        --konecta-dark: #2a01cd; /* Using user's specific hex */
         --konecta-yellow: #f0fa00;
+        --konecta-yellow-light: rgba(240, 250, 0, 0.7);
+        --text-light: #E5E7EB; /* text-gray-200 */
+        --text-dim: #D1D5DB; /* text-gray-300 */
+        --bg-card: #1F2937; /* bg-gray-800 */
+        --border-mid: #374151; /* border-gray-700 */
     }
     html, body {
             height: 100%;
         }
     body {
         font-family: 'Inter', sans-serif;
-        background-color: #111827; /* bg-gray-900 */
-        color: #F9FAFB; /* text-gray-50 */
+        background-color: var(--konecta-dark); /* 1. Main BG Color */
+        color: var(--text-light);
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -66,44 +72,52 @@
     .slide-title {
         font-size: 2.5rem; /* text-4xl */
         font-weight: 800; /* font-extrabold */
-        color: var(--konecta-blue);
+        color: var(--text-light); /* CHANGED: Was konecta-blue, now white */
         margin-bottom: 2.5rem; /* mb-10 */
         padding-bottom: 0.75rem; /* pb-3 */
-        border-bottom: 2px solid #374151; /* border-gray-700 */
+        border-bottom: 2px solid var(--border-mid);
     }
     
     .slide-title-accent {
-        color: var(--konecta-yellow);
+        color: var(--konecta-yellow); /* Full yellow for title accents */
+    }
+    
+    /* Main body text */
+    p, ul li {
+        color: var(--text-dim); /* 3. Use grey for body text */
     }
 
     /* Custom bullet points */
     ul li::marker {
-        color: var(--konecta-blue);
+        color: var(--konecta-yellow); /* CHANGED: Was konecta-blue */
         font-size: 1.2em;
     }
     ul li {
         padding-left: 0.5rem; /* pl-2 */
     }
+    ul li strong {
+        color: var(--text-light); /* 3. Use white for strong text */
+    }
 
     /* Reusable benefit card */
     .benefit-card {
-        background-color: #1F2937; /* bg-gray-800 */
+        background-color: var(--bg-card); /* 3. Use grey for cards */
         padding: 1.5rem; /* p-6 */
         border-radius: 0.75rem; /* rounded-xl */
-        border-top: 4px solid var(--konecta-blue);
+        border-top: 4px solid var(--konecta-yellow-light); /* 2. Light yellow border */
         display: flex;
         flex-direction: column;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        box-shadow: 0 0 20px rgba(240, 250, 0, 0.15); /* 4. Modern glow */
         transition: transform 0.3s, box-shadow 0.3s;
     }
     .benefit-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,169,224,0.1);
+        box-shadow: 0 10px 30px rgba(240, 250, 0, 0.2);
     }
     .benefit-card h3 {
         font-size: 1.3rem; /* text-xl */
         font-weight: 700; /* font-bold */
-        color: white; 
+        color: var(--text-light); /* 3. Use white for card titles */
         margin-bottom: 0.75rem; /* mb-3 */
     }
     .benefit-card h3 span { /* Accent */
@@ -111,8 +125,17 @@
     }
     .benefit-card p {
         font-size: 1rem; /* text-base */
-        color: #D1D5DB; /* text-gray-300 */
+        color: var(--text-dim);
         line-height: 1.6;
+    }
+    
+    /* Proposal cards (Slide 10) */
+    .proposal-card {
+        background-color: var(--bg-card); /* 3. Use grey for cards */
+        padding: 1.5rem; /* p-6 */
+        border-radius: 0.75rem; /* rounded-lg */
+        border-width: 2px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
     }
 
     /* Navigation controls */
@@ -122,40 +145,49 @@
         left: 0;
         right: 0;
         width: 100%;
-        background-color: rgba(17, 24, 39, 0.8); /* bg-gray-900 with opacity */
+        background-color: rgba(0, 0, 0, 0.5); /* 3. Darker grey/black bg */
         backdrop-filter: blur(8px);
         z-index: 20;
-        border-top: 1px solid #374151; /* border-gray-700 */
+        border-top: 1px solid var(--konecta-yellow-light); /* 2. Light yellow border */
+    }
+    #slide-counter {
+        color: var(--konecta-yellow-light); /* 2. Light yellow number */
+        font-weight: 700; /* Bold number */
     }
     .nav-button {
-        background-color: var(--konecta-dark);
+        background-color: #1F2937; /* bg-gray-800 */
         color: white;
         font-weight: 600; /* font-semibold */
         padding: 0.75rem 1.5rem; /* py-3 px-6 */
         border-radius: 0.5rem; /* rounded-lg */
-        transition: background-color 0.2s, transform 0.2s;
+        transition: all 0.2s;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        border: 1px solid var(--border-mid);
     }
     .nav-button:hover {
-        background-color: var(--konecta-blue);
+        background-color: var(--konecta-yellow); /* CHANGED: Was konecta-blue */
         transform: translateY(-2px);
+        border-color: var(--konecta-yellow);
+        color: #111827; /* CHANGED: Add dark text for yellow bg */
     }
     .nav-button:disabled {
-        background-color: #374151; /* bg-gray-700 */
+        background-color: var(--border-mid);
         opacity: 0.5;
         cursor: not-allowed;
         transform: none;
+        border-color: var(--border-mid);
     }
     
     /* Title slide logo */
     .konecta-logo {
         width: 250px;
         height: auto;
-        background-color: var(--konecta-dark);
+        background-color: var(--konecta-dark); /* Aligns with main bg */
         padding: 20px 30px;
         border-radius: 12px;
         margin-bottom: 2rem;
+        border: 1px solid var(--konecta-yellow-light); /* CHANGED: Was konecta-blue */
     }
 </style>
 </head>
@@ -175,8 +207,8 @@
         <section class="slide p-12 md:p-20" data-slide-index="2">
             <h2 class="slide-title">1. Executive Summary</h2>
             <div class="space-y-8 text-xl text-gray-200">
-                <p><strong class="text-[var(--konecta-blue)] text-2xl block mb-2">The Problem:</strong> Outdated, error-prone manual processes are draining resources, eroding our bottom line, and providing zero real-time operational visibility.</p>
-                <p><strong class="text-[var(--konecta-blue)] text-2xl block mb-2">The Solution:</strong> KOMPASS, a proprietary Google Workspace tool, digitizes and revolutionizes these workflows, providing a live command dashboard for managers and total self-service for agents.</p>
+                <p><strong class="text-[var(--konecta-yellow)] text-2xl block mb-2">The Problem:</strong> Outdated, error-prone manual processes are draining resources, eroding our bottom line, and providing zero real-time operational visibility.</p>
+                <p><strong class="text-[var(--konecta-yellow)] text-2xl block mb-2">The Solution:</strong> KOMPASS, a proprietary Google Workspace tool, digitizes and revolutionizes these workflows, providing a live command dashboard for managers and total self-service for agents.</p>
                 <p><strong class="text-[var(--konecta-yellow)] text-2xl block mb-2">The Benefit (ROI):</strong> KOMPASS will reclaim <span class="font-bold">thousands of administrative hours</span>, deliver <span class="font-bold">100% data integrity</span> for payroll, and transform managers from reactive reporters to proactive leaders.</p>
             </div>
         </section>
@@ -228,15 +260,15 @@
             <h2 class="slide-title">4. Core Features: <span class="slide-title-accent">A 360° Solution</span></h2>
             <p class="text-xl text-gray-200 mb-10">KOMPASS delivers a tailored, permission-based experience for every role in our operation.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-dark)] shadow-xl">
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-yellow-light)] shadow-xl"> <!-- CHANGED: Was konecta-blue -->
                     <h3 class="text-2xl font-bold text-white mb-4">FOR AGENTS</h3>
                     <p class="text-lg text-gray-300">A powerful self-service portal that empowers employees and reduces supervisor dependency.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-dark)] shadow-xl">
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-yellow-light)] shadow-xl"> <!-- CHANGED: Was konecta-blue -->
                     <h3 class="text-2xl font-bold text-white mb-4">FOR MANAGERS</h3>
                     <p class="text-lg text-gray-300">A real-time command center and robust admin tools to manage teams proactively.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-dark)] shadow-xl">
+                <div class="bg-gray-800 p-8 rounded-lg border-2 border-[var(--konecta-yellow-light)] shadow-xl"> <!-- CHANGED: Was konecta-blue -->
                     <h3 class="text-2xl font-bold text-white mb-4">FOR SUPERADMINS</h3>
                     <p class="text-lg text-gray-300">Total system-wide configuration, user onboarding, and content management.</p>
                 </div>
@@ -315,16 +347,16 @@
             <h2 class="slide-title">6. Proposal & <span class="slide-title-accent">Next Steps</span></h2>
             <p class="text-xl text-gray-200 mb-8">This tool is a valuable, proprietary asset that directly improves our operational efficiency and bottom line.</p>
             <ul class="text-2xl space-y-6 text-gray-100">
-                <li class="p-6 bg-gray-800 rounded-lg border-2 border-[var(--konecta-dark)] shadow-lg">
-                    <strong class="text-[var(--konecta-blue)] block mb-2">1. Adopt & Standardize:</strong>
+                <li class="proposal-card border-[var(--konecta-yellow-light)]"> <!-- CHANGED: Was konecta-blue -->
+                    <strong class="text-[var(--konecta-yellow)] block mb-2">1. Adopt & Standardize:</strong> <!-- CHANGED: Was konecta-blue -->
                     Officially adopt KOMPASS as the standard operations portal for all targeted departments.
                 </li>
-                <li class="p-6 bg-gray-800 rounded-lg border-2 border-[var(--konecta-yellow)] shadow-lg">
+                <li class="proposal-card border-[var(--konecta-yellow)] shadow-lg shadow-[var(--konecta-yellow-light)]/10">
                     <strong class="text-[var(--konecta-yellow)] block mb-2">2. Invest in Our Asset:</strong>
                     Acknowledge the development work and agree on fair compensation and an SLA for ongoing support.
                 </li>
-                <li class="p-6 bg-gray-800 rounded-lg border-2 border-gray-700 shadow-lg">
-                    <strong class="text-[var(--konecta-blue)] block mb-2">3. Future-Proof (Phase 2):</strong>
+                <li class="proposal-card border-gray-700">
+                    <strong class="text-[var(--konecta-yellow)] block mb-2">3. Future-Proof (Phase 2):</strong> <!-- CHANGED: Was konecta-blue -->
                     Plan for future integration with official HRIS (e.g., Workday) and Payroll systems.
                 </li>
             </ul>
@@ -342,7 +374,7 @@
     <footer id="nav-controls">
         <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
             <button id="prev-btn" class="nav-button">Previous</button>
-            <span id="slide-counter" class="text-gray-300 text-lg font-medium">1 / 11</span>
+            <span id="slide-counter" class="text-lg font-medium">1 / 11</span>
             <button id="next-btn" class="nav-button">Next</button>
         </div>
     </footer>
