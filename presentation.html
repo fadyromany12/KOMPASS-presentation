@@ -129,7 +129,7 @@
         line-height: 1.6;
     }
     
-    /* Proposal cards (Slide 10) */
+    /* Proposal cards (Slide 10 & 11) */
     .proposal-card {
         background-color: var(--bg-card); /* 3. Use grey for cards */
         padding: 1.5rem; /* p-6 */
@@ -362,8 +362,25 @@
             </ul>
         </section>
 
-        <!-- Slide 11: Thank You -->
-        <section class="slide flex flex-col justify-center items-center text-center p-12" data-slide-index="11">
+        <!-- Slide 11: The Partnership Model -->
+        <section class="slide p-12 md:p-20" data-slide-index="11">
+            <h2 class="slide-title">7. Our Proposed Partnership: <span class="slide-title-accent">A Value-Based Model</span></h2>
+            <p class="text-xl text-gray-200 mb-8">Our proposal focuses on the business value delivered, not just the development effort. We recommend a two-part structure to reward the asset's creation and ensure its long-term operational success.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="proposal-card border-[var(--konecta-yellow)] shadow-lg shadow-[var(--konecta-yellow-light)]/10">
+                    <h3 class="text-2xl font-bold text-[var(--konecta-yellow)] mb-3">PART 1: Asset Development Compensation</h3>
+                    <p class="text-lg text-gray-300">A one-time bonus recognizing the completion and handover of this significant, high-impact business tool. The value is benchmarked against the external "Build" cost for a similar custom application.</p>
+                </div>
+                <div class="proposal-card border-[var(--konecta-yellow)] shadow-lg shadow-[var(--konecta-yellow-light)]/10">
+                    <h3 class="text-2xl font-bold text-[var(--konecta-yellow)] mb-3">PART 2: Ongoing Maintenance & Support (SLA)</h3>
+                    <p class="text-lg text-gray-300">A monthly retainer establishing a formal service agreement. This fee guarantees the tool's continuous operation, including bug fixes and updates, at a cost far below the "Buy" alternative of a commercial SaaS license.</p>
+                </div>
+            </div>
+             <p class="text-center text-gray-400 mt-10 text-lg">This hybrid approach provides Konecta with a fully supported, mission-critical asset, guaranteeing its performance and longevity.</p>
+        </section>
+
+        <!-- Slide 12: Thank You -->
+        <section class="slide flex flex-col justify-center items-center text-center p-12" data-slide-index="12">
             <h1 class="text-7xl font-bold text-white">Thank You</h1>
             <p class="text-4xl font-light text-gray-200 mt-8">Questions & Discussion</p>
         </section>
@@ -374,7 +391,7 @@
     <footer id="nav-controls">
         <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
             <button id="prev-btn" class="nav-button">Previous</button>
-            <span id="slide-counter" class="text-lg font-medium">1 / 11</span>
+            <span id="slide-counter" class="text-lg font-medium">1 / 12</span>
             <button id="next-btn" class="nav-button">Next</button>
         </div>
     </footer>
